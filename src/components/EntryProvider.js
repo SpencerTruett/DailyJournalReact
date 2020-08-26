@@ -11,6 +11,7 @@ export const EntryContext = React.createContext();
  */
 export const EntryProvider = props => {
   const [entries, setEntries] = useState([]);
+  const [entry, setEntry] = useState({})
 
   const getEntries = () => {
     return fetch("http://localhost:8088/entries")
@@ -19,7 +20,9 @@ export const EntryProvider = props => {
   };
 
   const getEntryById = id => {
-    return fetch(`http://localhost:8088/entries/${id}`).then(res => res.json());
+    return fetch(`http://localhost:8088/entries/${id}`)
+      .then(res => res.json())
+      .then(setEntry);;
   };
 
   const addEntry = Entry => {
@@ -56,7 +59,9 @@ export const EntryProvider = props => {
         addEntry,
         deleteEntry,
         updateEntry,
-        getEntryById
+        getEntryById,
+        entry,
+        setEntry
       }}
     >
       {props.children}

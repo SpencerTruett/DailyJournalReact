@@ -4,7 +4,7 @@ import { EntryContext } from "./EntryProvider";
 export default ({ entry, moods }) => {
 
   const mood = moods.find(m => m.id === entry.moodId)
-  const { deleteEntry } = useContext(EntryContext)
+  const { deleteEntry, getEntryById } = useContext(EntryContext)
 
   return (
 
@@ -13,17 +13,19 @@ export default ({ entry, moods }) => {
       <div className="entry__entry">{entry.entry}</div>
       <div className="entry__date">{entry.date}</div>
       <div className="entry__mood">{mood.label}</div>
-      <button onClick={
-        () => {
-
-        }
-      }>Edit</button>
 
       <button onClick={
         () => {
+          debugger
           deleteEntry(entry)
         }
       }>Delete</button>
+      <button onClick={
+        () => {
+          debugger
+          getEntryById(entry.id)
+        }
+      }>Edit</button>
     </section>
   )
 };

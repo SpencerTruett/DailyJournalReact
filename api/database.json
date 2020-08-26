@@ -1,34 +1,5 @@
 {
-  "entries": [
-    {
-      "id": 1,
-      "date": 1598380563089,
-      "concept": "Test",
-      "entry": "Testing",
-      "moodId": 2
-    },
-    {
-      "concept": "123",
-      "entry": "456",
-      "date": 1598384781506,
-      "moodId": 1,
-      "id": 2
-    },
-    {
-      "concept": "abc",
-      "entry": "123",
-      "date": 1598384841574,
-      "moodId": 1,
-      "id": 3
-    },
-    {
-      "concept": "123",
-      "entry": "test",
-      "date": 1598455091746,
-      "moodId": 1,
-      "id": 4
-    }
-  ],
+  "entries": [],
   "moods": [
     {
       "id": 1,

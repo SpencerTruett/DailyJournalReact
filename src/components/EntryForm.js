@@ -4,15 +4,23 @@ import { MoodContext } from "./mood/MoodProvider"
 
 
 export default props => {
-    const { addEntry, entries, updateEntry } = useContext(EntryContext)
+    const { addEntry, entries, updateEntry, entry, setEntry } = useContext(EntryContext)
     const { moods, getMoods } = useContext(MoodContext)
-    const [entry, setEntry] = useState({})
 
-    const [editMode] = useState(false)
+    const [editMode, editModeChanged] = useState(false)
 
     useEffect(() => {
         getMoods()
     }, [])
+
+    useEffect(() => {
+        if ('id' in entry) {
+            editModeChanged(true)
+        }
+        else {
+            editModeChanged(false)
+        }
+    }, [entry])
 
     const handleControlledInputChange = (event) => {
         /*
@@ -33,7 +41,8 @@ export default props => {
                 id: entry.id,
                 concept: entry.concept,
                 entry: entry.entry,
-                date: entry.date
+                date: entry.date,
+                moodId: parseInt(entry.moodId)
             })
         } else {
             addEntry({
