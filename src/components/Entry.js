@@ -16,13 +16,11 @@ export default ({ entry, moods }) => {
 
       <button onClick={
         () => {
-          debugger
           deleteEntry(entry)
         }
       }>Delete</button>
       <button onClick={
         () => {
-          debugger
           getEntryById(entry.id)
         }
       }>Edit</button>
