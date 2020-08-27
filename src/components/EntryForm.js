@@ -4,7 +4,7 @@ import { MoodContext } from "./mood/MoodProvider"
 
 
 export default props => {
-    const { addEntry, entries, updateEntry, entry, setEntry } = useContext(EntryContext)
+    const { addEntry, updateEntry, entry, setEntry } = useContext(EntryContext)
     const { moods, getMoods } = useContext(MoodContext)
 
     const [editMode, editModeChanged] = useState(false)
