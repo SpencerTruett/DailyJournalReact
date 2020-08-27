@@ -23,7 +23,7 @@ export default () => {
   const filterAllEntries = (event) => {
     const filteredEntriesByMood = entries.filter(entry => entry.moodId === parseInt(event.target.value))
     setEntries(filteredEntriesByMood)
-    setMoodSelected(event.target.value)
+    setMoodSelected(parseInt(event.target.value))
   }
 
 
@@ -31,13 +31,17 @@ export default () => {
     <>
       <h1>Filter Entries</h1>
 
+      {
+        moods.map(mood => {
+          return <>
+            <input type="radio" value={mood.id} name="moodId" checked={moodSelected === mood.id}
+              onClick={filterAllEntries}
+            /> {mood.label}
+          </>
+        })
+      }
+
       <div >
-        <input type="radio" value="1" name="moodId" checked={moodSelected === "1"}
-          onClick={filterAllEntries}
-        /> Happy
-        <input type="radio" value="2" name="moodId" checked={moodSelected === "2"}
-          onClick={filterAllEntries}
-        /> Sad
         <button onClick={() => {
           setEntries(entries)
           setMoodSelected("")
