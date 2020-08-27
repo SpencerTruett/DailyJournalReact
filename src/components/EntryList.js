@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { EntryContext } from "./EntryProvider";
 import Entry from "./Entry";
 import { MoodContext } from "./mood/MoodProvider";
+import { filter } from "minimatch";
 
 export default () => {
   const { entries, getEntries } = useContext(EntryContext);
@@ -18,6 +19,11 @@ export default () => {
 
   const [filteredEntries, setEntries] = useState([]);
 
+  const filterAllEntries = (event) => {
+    const filteredEntriesByMood = entries.filter(entry => entry.moodId === parseInt(event.target.value))
+    setEntries(filteredEntriesByMood)
+  }
+
 
   return (
     <>
@@ -25,20 +31,11 @@ export default () => {
 
       <div >
         <input type="radio" value="1" name="moodId"
-          onClick={
-            (event) => {
-              const happyEntries = entries.filter(entry => entry.moodId === parseInt(event.target.value))
-              setEntries(happyEntries)
-            }
-          }
+          onClick={filterAllEntries}
         /> Happy
         <input type="radio" value="2" name="moodId"
-          onClick={
-            (event) => {
-              const sadEntries = entries.filter(entry => entry.moodId === parseInt(event.target.value))
-              setEntries(sadEntries)
-            }
-          } /> Sad
+          onClick={filterAllEntries}
+        /> Sad
       </div>
 
       <h1>Entries</h1>
