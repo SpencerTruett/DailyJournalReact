@@ -19,6 +19,12 @@ export const EntryProvider = props => {
       .then(setEntries);
   };
 
+  const searchEntries = (searchTerm) => {
+    return fetch(`http://localhost:8088/entries?q=${searchTerm}`)
+      .then(res => res.json())
+      .then(setEntries);
+  };
+
   const getEntryById = id => {
     return fetch(`http://localhost:8088/entries/${id}`)
       .then(res => res.json())
@@ -61,7 +67,8 @@ export const EntryProvider = props => {
         updateEntry,
         getEntryById,
         entry,
-        setEntry
+        setEntry,
+        searchEntries
       }}
     >
       {props.children}

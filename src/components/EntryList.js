@@ -4,8 +4,11 @@ import Entry from "./Entry";
 import { MoodContext } from "./mood/MoodProvider";
 
 export default () => {
-  const { entries, getEntries } = useContext(EntryContext);
+  const { entries, getEntries, searchEntries } = useContext(EntryContext);
   const { moods, getMoods } = useContext(MoodContext);
+  const [filteredEntries, setEntries] = useState([]);
+  const [searchedTerm, setTerm] = useState("");
+  const [moodSelected, setMoodSelected] = useState("");
 
   useEffect(() => {
     getEntries()
@@ -16,9 +19,10 @@ export default () => {
     setEntries(entries)
   }, [entries])
 
-  const [filteredEntries, setEntries] = useState([]);
+  useEffect(() => {
+    searchEntries(searchedTerm)
+  }, [searchedTerm])
 
-  const [moodSelected, setMoodSelected] = useState("");
 
   const filterAllEntries = (event) => {
     const filteredEntriesByMood = entries.filter(entry => entry.moodId === parseInt(event.target.value))
@@ -46,6 +50,17 @@ export default () => {
           setEntries(entries)
           setMoodSelected("")
         }}>Clear Filter</button>
+      </div>
+
+      <div>
+
+        <input type="text" placeholder="Search" onKeyPress={
+          (event) => {
+            const searchTerm = event.target.value
+            setTerm(searchTerm)
+          }
+        } />
+
       </div>
 
       <h1>Entries</h1>
