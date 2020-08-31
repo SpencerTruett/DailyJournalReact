@@ -54,7 +54,7 @@ export default () => {
 
       <div>
 
-        <input type="text" placeholder="Search" onKeyPress={
+        <input type="text" placeholder="Search" onKeyUp={
           (event) => {
             const searchTerm = event.target.value
             setTerm(searchTerm)
