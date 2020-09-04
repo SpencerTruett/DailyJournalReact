@@ -65,11 +65,6 @@ export default () => {
 
       <h1>Entries</h1>
 
-      {/* 
-            Pseudo Code
-            .filter(happyEntries => happyEntries.mood.label === "Happy") 
-        */}
-
       <div className="entries">
         {filteredEntries.map(entry => {
           return <Entry key={entry.id} entry={entry} moods={moods} />;
